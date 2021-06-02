@@ -1,8 +1,7 @@
-import React from "react";
 import { Counter } from "./Counter";
 
-function Usage() {
-  const handleChangeCounter = (count) => {
+export const Usage = () => {
+  const handleChangeCounter = (count: number) => {
     console.log("count", count);
   };
 
@@ -15,5 +14,3 @@ function Usage() {
     </Counter>
   );
 }
-
-export { Usage };

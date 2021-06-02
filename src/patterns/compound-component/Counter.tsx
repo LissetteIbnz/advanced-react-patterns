@@ -1,12 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { ExtractProps } from "../../utils";
 import { CounterProvider } from "./useCounterContext";
 import { Count, Label, Decrement, Increment } from "./components";
 
-function Counter({ children, onChange, initialValue = 0 }) {
+interface CounterComposition {
+  Count: React.FC<ExtractProps<typeof Count>>;
+  Label: React.FC<ExtractProps<typeof Label>>;
+  Increment: React.FC<ExtractProps<typeof Increment>>;
+  Decrement: React.FC<ExtractProps<typeof Decrement>>;
+}
+
+interface CounterProps {
+  initialValue?: number;
+  onChange: (count: number) => void;
+}
+
+const Counter: React.FC<CounterProps> & CounterComposition = ({ children, onChange, initialValue = 0 }) => {
   const [count, setCount] = useState(initialValue);
 
   const firstMounded = useRef(true);
+
   useEffect(() => {
     if (!firstMounded.current) {
       onChange && onChange(count);
@@ -42,4 +56,4 @@ Counter.Label = Label;
 Counter.Increment = Increment;
 Counter.Decrement = Decrement;
 
-export { Counter };
+export { Counter }

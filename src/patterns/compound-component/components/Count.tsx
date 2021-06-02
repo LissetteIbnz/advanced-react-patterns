@@ -1,8 +1,11 @@
-import React from "react";
 import styled from "styled-components";
 import { useCounterContext } from "../useCounterContext";
 
-function Count({ max }) {
+interface CountProps {
+  max: number;
+}
+
+export function Count({ max }: CountProps) {
   const { count } = useCounterContext();
 
   const hasError = max ? count >= max : false;
@@ -10,10 +13,8 @@ function Count({ max }) {
   return <StyledCount hasError={hasError}>{count}</StyledCount>;
 }
 
-const StyledCount = styled.div`
+const StyledCount = styled.div<{ hasError: boolean }>`
   background-color: ${({ hasError }) => (hasError ? "#bd2130" : "#17a2b8")};
   color: white;
   padding: 5px 7px;
 `;
-
-export { Count };
