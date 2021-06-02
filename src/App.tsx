@@ -15,6 +15,7 @@ import {
   faMinusCircle,
   faMinusSquare
 } from "@fortawesome/free-solid-svg-icons";
+
 library.add(
   faPlus,
   faPlusCircle,
